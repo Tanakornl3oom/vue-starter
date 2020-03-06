@@ -35,20 +35,33 @@ export default {
     },
     methods: {
         async fetchData() {
-            const { data } = await Axios.get(apiUrl);
-            this.response.push(data);
+            try {
+                const { data } = await Axios.get(apiUrl);
+                this.response.push(data);
+            } catch (error) {
+                this.response = error;
+            }
         },
         async fetchDatas() {
-            const { data } = await Axios.get(apiUrl + '/datas');
-            this.response = data;
+            try {
+                const { data } = await Axios.get(apiUrl + '/datas');
+                this.response = data;
+            } catch (error) {
+                this.response = error;
+            }
         },
         async createData() {
             console.log(this.response.lenght);
-            const { data } = await Axios.post(apiUrl + '/data', {
-                info: this.info || 'default',
-                datas: this.response
-            });
-            this.response = data;
+            try {
+                const { data } = await Axios.post(apiUrl + '/data', {
+                    info: this.info || 'default',
+                    datas: this.response
+                });
+                this.response = data;
+                this.info = '';
+            } catch (error) {
+                this.response = error;
+            }
         }
     },
     computed: {},

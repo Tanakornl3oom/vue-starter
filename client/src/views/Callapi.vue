@@ -12,7 +12,7 @@
                     placeholder="create data"
                     type="text"
                     v-model="info"
-                    @keyup.enter.prevent="todoClick"
+                    @keyup.enter.prevent="createData"
                 />
                 <button @click="createData">click to add data</button> <br />
             </span>
